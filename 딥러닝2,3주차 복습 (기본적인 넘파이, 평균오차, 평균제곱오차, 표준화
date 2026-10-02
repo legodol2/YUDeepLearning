@@ -1,0 +1,586 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as np\n",
+        "a = np.array([2,3,4])\n",
+        "a.shape, a.ndim, a.dtype, a.itemsize, a.size\n",
+        "#shape: 배열의 형상\n",
+        "#ndim:차원의 개수\n",
+        "#dtype:원소의 자료형\n",
+        "#itemsize: 배열의 원소 크기(바이트)\n",
+        "#data: 배열의 실제 원소 포함 버퍼\n",
+        "#strides: 다음 요소로 점프하는데 거리\n",
+        "\n",
+        "#1. 넘파이\n",
+        "# 2차원 배열\n",
+        "b = np.array([[1,2,3] , [4,5,6]])\n",
+        "print(b)\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "9dk352HJumOD",
+        "outputId": "fe78caa8-a1ef-482c-ef9c-f86d1d2e5616"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[[1 2 3]\n",
+            " [4 5 6]]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as np\n",
+        "\n",
+        "mid_score_lst = [70,85,92,79]\n",
+        "fin_score_lst = [90,65,70,85]\n",
+        "student_sum = mid_score_lst + fin_score_lst\n",
+        "print('다 더한거' , student_sum)\n",
+        "#나누기는 불가하기에 평균을 나누기 연산자로 구하는것 불가\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JAjRyiNNKp9x",
+        "outputId": "629992ab-7e63-48ed-8991-31c37b20422f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "다 더한거 [70, 85, 92, 79, 90, 65, 70, 85]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#앞서한것과 같이 일반 리스트는 연산이 까다로움-> 넘파이 사용\n",
+        "import numpy as np\n",
+        "\n",
+        "a = np.array([10, 20, 30])\n",
+        "b = np.array([1, 2, 3])\n",
+        "\n",
+        "print(a+b)\n",
+        "print(a/b)\n",
+        "print(a/2)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "eYt-TWyMTKGv",
+        "outputId": "5d748af3-4bf1-4f67-e2c2-c78f599ca137"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[11 22 33]\n",
+            "[10. 10. 10.]\n",
+            "[ 5. 10. 15.]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#도전과제 3.4\n",
+        "\n",
+        "#(1)\n",
+        "import numpy as np\n",
+        "\n",
+        "a=np.array([0,1,2,3,4,5,6,7,8,9])\n",
+        "\n",
+        "print(a)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "hckWE0IR5cbK",
+        "outputId": "9c005092-9ac1-4727-c955-92fd5cf74f6f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[0 1 2 3 4 5 6 7 8 9]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(2)\n",
+        "import numpy as np\n",
+        "\n",
+        "a=np.array(range(0, 10, 2))\n",
+        "a"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "r42pBXXG53dA",
+        "outputId": "becdb625-9333-4cb6-f33d-a8b0bc3f1fde"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([0, 2, 4, 6, 8])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 22
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#넘파이로 평균 제곱 오차 구하기\n",
+        "#평균제곱오차(오차제곱/값들 갯수)\n",
+        "\n",
+        "import numpy as np\n",
+        "\n",
+        "y = np.array([1,2,3,4,5])\n",
+        "y_predict=np.array([1.2,2.5,3.2,4.1,5.2])\n",
+        "\n",
+        "diff = np.abs(y_predict - y)\n",
+        "emae = diff.sum()/len(diff)\n",
+        "print(emae)\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "SwWxwYHo6mF0",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "1f6a052d-9658-416b-d610-be89a871a2bf"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "0.24\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#넘파이 말고 mean_absolute_error로 바록 구하기\n",
+        "\n",
+        "from sklearn.metrics import mean_absolute_error\n",
+        "\n",
+        "y = np.array([1,2,3,4,5])\n",
+        "y_predict=np.array([1.2,2.5,3.2,4.1,5.2])\n",
+        "\n",
+        "print(mean_absolute_error(y, y_predict))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "CavEIOOk1tpi",
+        "outputId": "96029957-6698-43b0-c78c-b7b775fbc08c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "0.24\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#도전문제 4.2\n",
+        "#1\n",
+        "import numpy as np\n",
+        "\n",
+        "y= np.array([2,4,6,8,10])\n",
+        "y_predict = np.array([2.1,4.3,5.5,7.9,10.1])\n",
+        "\n",
+        "diff = np.abs(y-y_predict)\n",
+        "diffs = (y-y_predict)**2\n",
+        "\n",
+        "ave = diff.sum() / len(diff)\n",
+        "aves = diffs.sum()/len(diffs)\n",
+        "\n",
+        "print(\"평균 제곱오차 = \" , ave)\n",
+        "print(\"평균 제곱오차 = \", aves)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "7Vym55w62NWK",
+        "outputId": "826fe405-c4e2-4937-ce49-3c3350989007"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "평균 제곱오차 =  0.21999999999999983\n",
+            "평균 제곱오차 =  0.07399999999999997\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#2 sklearn.metrics + mean_absolute_error은 평균 오차\n",
+        "#sklearn.metrics import mean_squared_error은 평균 제곱 오차\n",
+        "import numpy as np\n",
+        "from sklearn.metrics import mean_absolute_error\n",
+        "from sklearn.metrics import mean_squared_error\n",
+        "\n",
+        "y = np.array([2,4,6,8,10])\n",
+        "\n",
+        "y_predict = np.array([2.1,4.3,5.5,7.9,10.1])\n",
+        "\n",
+        "print(\"모델 A의 평균 절대오차 = \", mean_absolute_error(y,y_predict))\n",
+        "print(\"모델 A의 평균 제곱오차 = \", mean_squared_error(y,y_predict))\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "NiKhI4R-6GFL",
+        "outputId": "129734f4-bf6c-42c9-da43-2f20f6126071"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "모델 A의 평균 절대오차 =  0.21999999999999983\n",
+            "모델 A의 평균 제곱오차 =  0.07399999999999997\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#22411956 김경훈 과제 1-1\n",
+        "import numpy as np\n",
+        "from sklearn import linear_model\n",
+        "\n",
+        "X = np.array([[49, 4],[76, 5],[85, 6],[43, 3],[57, 4],[90, 5],[78, 7],[96, 6],[43, 4],[76, 6]])\n",
+        "y = np.array([3.1,7.7,8.7,1.8,6.7,9.5,8.4,13.2,2.2,8.3])\n",
+        "regr = linear_model.LinearRegression()\n",
+        "\n",
+        "regr.fit(X, y)\n",
+        "\n",
+        "print(\"계수 :\", regr.coef_)\n",
+        "print(\"절편 :\", regr.intercept_)\n",
+        "print(\"점수 :\", regr.score(X, y))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "dVe6XdGg9uLi",
+        "outputId": "1778d8c2-e3a6-43fc-c8a0-b473308b79e8"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "계수 : [0.17477681 0.02069479]\n",
+            "절편 : -5.255507177751852\n",
+            "점수 : 0.9242164890247381\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#22411956 김경훈 과제 1-2\n",
+        "\n",
+        "import numpy as np\n",
+        "from sklearn import linear_model\n",
+        "\n",
+        "X = np.array([[49, 4],[76, 5],[85, 6],[43, 3],[57, 4],[90, 5],[78, 7],[96, 6],[43, 4],[76, 6]])\n",
+        "y = np.array([3.1,7.7,8.7,1.8,6.7,9.5,8.4,13.2,2.2,8.3])\n",
+        "\n",
+        "regr = linear_model.LinearRegression()\n",
+        "regr.fit(X, y)\n",
+        "\n",
+        "result = regr.predict([[66,6]])\n",
+        "\n",
+        "print(\"실면적 66m^2, 접근성 점수 6인 주택의 예상가격 :\", result.round(2)[0], \"억 원\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "c8xj8LB2EPQN",
+        "outputId": "e467634b-9cd2-43a7-9bb8-fa5574308ba5"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "실면적 66m^2, 접근성 점수 6인 주택의 예상가격 : 6.4 억 원\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#22411956 김경훈 과제 1-3\n",
+        "import numpy as np\n",
+        "from sklearn import linear_model\n",
+        "\n",
+        "X = np.array([[49, 4],[76, 5],[85, 6],[43, 3],[57, 4],[90, 5],[78, 7],[96, 6],[43, 4],[76, 6]])\n",
+        "\n",
+        "y = np.array([3.1,7.7,8.7,1.8,6.7,9.5,8.4,13.2,2.2,8.3])\n",
+        "\n",
+        "regr = linear_model.LinearRegression()\n",
+        "regr.fit(X, y)\n",
+        "\n",
+        "new_house = np.array([[84,6]])\n",
+        "result = regr.predict(new_house)\n",
+        "\n",
+        "print(\"84m^2 주택 예상 가격 :\", result.round(2)[0], \"억 원\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "EIqKksOuGJud",
+        "outputId": "1e9f6303-c6ae-421c-9c75-ec8d6e79f5bb"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "84m^2 주택 예상 가격 : 9.55 억 원\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#22411956 김경훈 과제 1-4\n",
+        "import numpy as np\n",
+        "from sklearn import linear_model\n",
+        "\n",
+        "X = np.array([[49, 4],[76, 5],[85, 6],[43, 3],[57, 4],[90, 5],[78, 7],[96, 6],[43, 4],[76, 6]])\n",
+        "y = np.array([3.1,7.7,8.7,1.8,6.7,9.5,8.4,13.2,2.2,8.3])\n",
+        "\n",
+        "house_model = linear_model.LinearRegression()\n",
+        "house_model.fit(X, y)\n",
+        "\n",
+        "predict_house = [[94,7]]\n",
+        "predict_price = house_model.predict(predict_house)\n",
+        "\n",
+        "print(\"예측 거래 가격 :\", predict_price.round(2)[0], \"억 원\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JAU6MpPvMML-",
+        "outputId": "fcac0a21-12b0-4a05-e45c-e91527b916f9"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "예측 거래 가격 : 11.32 억 원\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#22411956 김경훈 과제 1-5\n",
+        "import numpy as np\n",
+        "from sklearn.preprocessing import MinMaxScaler\n",
+        "\n",
+        "X = np.array([[49,4],[76,5],[85,6],[43,3],[57,4],[90,5],[78,7],[96,6],[43,4],[76,6]])\n",
+        "\n",
+        "print(\"실면적 값 :\", X[:,0])\n",
+        "print(\"접근성 값 :\", X[:,1])\n",
+        "\n",
+        "scaler = MinMaxScaler()\n",
+        "X_normal = scaler.fit_transform(X)\n",
+        "\n",
+        "print()\n",
+        "print(\"정규화 이전의 실면적:\")\n",
+        "print(X[:,0])\n",
+        "\n",
+        "print(\"정규화 이후의 실면적:\")\n",
+        "print(np.round(X_normal[:,0],2))\n",
+        "\n",
+        "print()\n",
+        "print(\"정규화 이전의 접근성:\")\n",
+        "print(X[:,1])\n",
+        "\n",
+        "print(\"정규화 이후의 접근성:\")\n",
+        "print(np.round(X_normal[:,1],2))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ouMbHBOVMuy9",
+        "outputId": "85444daf-293f-4ad9-d9f4-8fd1b9cb1cf0"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "실면적 값 : [49 76 85 43 57 90 78 96 43 76]\n",
+            "접근성 값 : [4 5 6 3 4 5 7 6 4 6]\n",
+            "\n",
+            "정규화 이전의 실면적:\n",
+            "[49 76 85 43 57 90 78 96 43 76]\n",
+            "정규화 이후의 실면적:\n",
+            "[0.11 0.62 0.79 0.   0.26 0.89 0.66 1.   0.   0.62]\n",
+            "\n",
+            "정규화 이전의 접근성:\n",
+            "[4 5 6 3 4 5 7 6 4 6]\n",
+            "정규화 이후의 접근성:\n",
+            "[0.25 0.5  0.75 0.   0.25 0.5  1.   0.75 0.25 0.75]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#22411956 김경훈 과제 1-6\n",
+        "import numpy as np\n",
+        "from sklearn.preprocessing import StandardScaler\n",
+        "\n",
+        "X = np.array([[49,4],[76,5],[85,6],[43,3],[57,4],[90,5],[78,7],[96,6],[43,4],[76,6]])\n",
+        "\n",
+        "print(\"실면적 값 :\", X[:,0])\n",
+        "print(\"접근성 값 :\", X[:,1])\n",
+        "\n",
+        "scaler = StandardScaler()\n",
+        "X_standard = scaler.fit_transform(X)\n",
+        "\n",
+        "print()\n",
+        "print(\"표준화 이전의 실면적:\")\n",
+        "print(X[:,0])\n",
+        "\n",
+        "print(\"표준화 이후의 실면적:\")\n",
+        "print(np.round(X_standard[:,0],2))\n",
+        "\n",
+        "print()\n",
+        "print(\"표준화 이전의 접근성:\")\n",
+        "print(X[:,1])\n",
+        "\n",
+        "print(\"표준화 이후의 접근성:\")\n",
+        "print(np.round(X_standard[:,1],2))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "K2OVGwycNBs6",
+        "outputId": "0b8d90f7-8e0b-4e1c-ba93-501be926ed33"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "실면적 값 : [49 76 85 43 57 90 78 96 43 76]\n",
+            "접근성 값 : [4 5 6 3 4 5 7 6 4 6]\n",
+            "\n",
+            "표준화 이전의 실면적:\n",
+            "[49 76 85 43 57 90 78 96 43 76]\n",
+            "표준화 이후의 실면적:\n",
+            "[-1.09  0.36  0.84 -1.41 -0.66  1.11  0.47  1.43 -1.41  0.36]\n",
+            "\n",
+            "표준화 이전의 접근성:\n",
+            "[4 5 6 3 4 5 7 6 4 6]\n",
+            "표준화 이후의 접근성:\n",
+            "[-0.85  0.    0.85 -1.69 -0.85  0.    1.69  0.85 -0.85  0.85]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "-u3sPjyjOva2"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
